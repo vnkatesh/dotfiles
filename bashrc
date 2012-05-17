@@ -91,8 +91,7 @@ alias less='most';
 alias c='clear'
 alias store='cd ~/svnprojects/sbs-store-trunk/yahoo/properties/store/'
 alias cpers='cd ~/svnprojects/cpers/'
-alias ssh='yssh -A'
-alias scp='yscp'
+alias ssh='ssh -AX'
 
 
 # Alias definitions.
@@ -154,8 +153,6 @@ for agent in /tmp/ssh-*/agent.*; do
 done
 echo Cannot find ssh agent - maybe you should reconnect and forward it?
 }
-
-setenv SSH_AUTH_SOCK `/usr/local/bin/yssh-find-agent`
 
 #########
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; echo -ne "\007"'
