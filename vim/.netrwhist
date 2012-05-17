@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/venkatna/temp'
+let g:netrw_dirhist_2='/home/venkatna/Downloads/Sownage/Sony BMG Music Entertainment Belgium'
+let g:netrw_dirhist_3='/etc/vpnc'
+let g:netrw_dirhist_4='/home/venkatna/.fontconfig'
+let g:netrw_dirhist_5='/etc/network'
