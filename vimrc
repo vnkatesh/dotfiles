@@ -30,6 +30,7 @@ set hidden
 set wildmenu
 set wildmode=list:longest
 set cursorline
+set cursorcolumn
 set ttyfast
 set ruler
 let g:load_doxygen_syntax=1
