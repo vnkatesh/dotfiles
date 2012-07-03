@@ -21,6 +21,7 @@ set softtabstop=4
 set expandtab
 set encoding=utf-8
 set scrolloff=3
+set tabpagemax=100
 set number
 set autoindent
 set copyindent
