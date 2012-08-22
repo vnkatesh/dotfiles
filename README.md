@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-My Dotfiles
+My Dotfiles - vimrc, etc
