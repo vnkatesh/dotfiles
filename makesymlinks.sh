@@ -27,4 +27,5 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-ln -s ~/Dropbox/.purple/ ~/.purple
+ln -s ~/Dropbox/purple/ ~/.purple
+ln -s ~/Dropbox/liferea_1.8/ ~/.liferea_1.8
