@@ -123,13 +123,6 @@ export PATH=/sbin:/usr/sbin:/bin:/usr/bin:/home/y/bin:/usr/local/bin:/usr/X11R6/
 export ACK_COLOR_MATCH="bold red"
 export PATH=$PATH:/home/venkatna/Downloads/android/android-sdk-linux_x86/platform-tools/
 
-# Ubuntu speed optimization
-# http://www.webupd8.org/2010/11/alternative-to-200-lines-kernel-patch.html
-if [ "$PS1" ] ; then 
-    mkdir -m 0700 /dev/cgroup/cpu/user/$$
-    echo $$ > /dev/cgroup/cpu/user/$$/tasks
-fi
-
 #########
 if [ -L /.yroot -a -f /tmp/.ysbsrootrc ]
 then
