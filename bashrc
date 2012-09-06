@@ -83,15 +83,12 @@ alias la='ls -A'
 alias l='ls -CF'
 alias vi='vim'
 alias top='htop'
-alias vpncc='sudo vpnc --ca-file /opt/vpnc/yahoo_root.pem'
-alias vpncd='sudo vpnc-disconnect'
 alias nanrombabusy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 alias more='most';
 alias less='most';
 alias c='clear'
-alias store='cd ~/svnprojects/sbs-store-trunk/yahoo/properties/store/'
-alias cpers='cd ~/svnprojects/cpers/'
 alias ssh='ssh -AX'
+alias fin='cd ~/Dropbox/Finances/Toronto'
 
 
 # Alias definitions.

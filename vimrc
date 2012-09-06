@@ -2,6 +2,9 @@ set nocompatible
 let mapleader=","
 syntax enable
 
+" Ledger
+au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
+
 " Pathogen
 filetype off " Pathogen needs to run before plugin indent on
 call pathogen#runtime_append_all_bundles()
@@ -54,7 +57,7 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 set wrap
-set textwidth=240
+set textwidth=130
 set formatoptions=qrn1
 nnoremap j gj
 nnoremap k gk
@@ -134,13 +137,15 @@ function! CompleteTab()
     return "\<tab>"
   else
     return "\<c-x>\<c-o>"
-  endif
+endif
 endfunction
 
-inoremap <tab> <c-r>=CompleteTab()<cr>
+autocmd FileType c inoremap <tab> <c-r>=CompleteTab()<cr>
+autocmd FileType cpp inoremap <tab> <c-r>=CompleteTab()<cr>
 nmap <leader>ev :e $MYVIMRC<CR>
 nmap <leader>sv :so $MYVIMRC<CR>
 set nowrap
 set pastetoggle=<F2>
 cmap w!! w !sudo tee % >/dev/null
 nmap <silent> ,/ :nohlsearch<CR>
+inoremap <C-@> <C-P>
