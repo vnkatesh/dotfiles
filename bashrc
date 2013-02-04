@@ -119,6 +119,7 @@ export EDITOR=vim
 export PATH=/sbin:/usr/sbin:/bin:/usr/bin:/home/y/bin:/usr/local/bin:/usr/X11R6/bin
 export ACK_COLOR_MATCH="bold red"
 export PATH=$PATH:/home/venkatna/Downloads/android/android-sdk-linux_x86/platform-tools/
+export PYTHONPATH=$PYTHONPATH:/usr/lib/xen-4.1/lib/python/
 
 #########
 if [ -L /.yroot -a -f /tmp/.ysbsrootrc ]
