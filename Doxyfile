@@ -187,7 +187,7 @@ MACRO_EXPANSION        = NO
 EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
 
-INCLUDE_PATH           = . /usr/local/include/ /home/y/include/ /vhome/venkatna/svnprojects/sbs-store-trunk/yahoo/
+INCLUDE_PATH           = . /usr/local/include/
 INCLUDE_FILE_PATTERNS  = 
 PREDEFINED             = 
 EXPAND_AS_DEFINED      = 

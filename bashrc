@@ -89,7 +89,19 @@ alias less='most';
 alias c='clear'
 alias ssh='ssh -AX'
 alias fin='cd ~/Dropbox/Finances/Toronto'
-
+alias tunnel='ssh -f -N -L 1122:142.150.234.71:3690 venkatesh@fs.csl.toronto.edu'
+alias printtunnel='ssh -L 9100:128.100.23.53:9100 venkatesh@25.176.113.181'
+alias tunnel_cluster131='ssh -f -N -L 1123:142.150.234.131:22 venkatesh@fs.csl.toronto.edu'
+alias tunnel_cluster130='ssh -f -N -L 1124:142.150.234.130:22 venkatesh@fs.csl.toronto.edu'
+alias tunnel_website='ssh -f -N -L 1125:seth.eecg.toronto.edu:22 venkatesh@25.176.113.181'
+alias rsync_website='rsync -avz -e "ssh -p 1125" /Users/venkatesh/Dropbox/website venkatesh@localhost:/amza/a/a2/venkatesh/public_html/'
+alias updatedb='sudo /usr/libexec/locate.updatedb'
+alias rsync_build='rsync -avz -e ssh /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ venkatesh@25.176.113.181:/home/venkatesh/hadoop-build'
+alias mixapart='cd /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0'
+alias rsync_xen_build='rsync -avz -e ssh /Users/venkatesh/Documents/xen-workspace/venkatesh/target/venkatesh-0.0.1-SNAPSHOT-jar-with-dependencies.jar venkatesh@25.176.113.181:/home/venkatesh/xen'
+alias rsync_xen_build_cluster130='rsync -avz -e "ssh -p 1124" /Users/venkatesh/Documents/xen-workspace/venkatesh/target/venkatesh-0.0.1-SNAPSHOT-jar-with-dependencies.jar root@localhost:/root'
+alias rsync_xen_build_cluster131='rsync -avz -e "ssh -p 1123" /Users/venkatesh/Documents/xen-workspace/venkatesh/target/venkatesh-0.0.1-SNAPSHOT-jar-with-dependencies.jar root@localhost:/root'
+alias datafart='curl --data-binary @- datafart.com'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -108,17 +120,13 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 export TERM=xterm
-export CVSROOT=vault.yahoo.com:/CVSROOT
 export CVS_RSH=/usr/local/bin/ssh
-export SVNROOT=svn+ssh://svn.corp.yahoo.com/yahoo/properties/sbs/store
-export SVN_ROOT=svn+ssh://svn.corp.yahoo.com/yahoo/properties/sbs/store
 export FIGNORE=.svn
-export SVNROOT=svn+ssh://svn.corp.yahoo.com/yahoo/properties/sbs/store
-export SVN_ROOT=svn+ssh://svn.corp.yahoo.com/yahoo/properties/sbs/store
 export EDITOR=vim
-export PATH=/sbin:/usr/sbin:/bin:/usr/bin:/home/y/bin:/usr/local/bin:/usr/X11R6/bin
 export ACK_COLOR_MATCH="bold red"
-export PATH=$PATH:/home/venkatna/Downloads/android/android-sdk-linux_x86/platform-tools/
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:$HADOOP_HOME/bin
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 #########
 if [ -L /.yroot -a -f /tmp/.ysbsrootrc ]
@@ -152,11 +160,6 @@ else
     if echo $TERM|grep -q screen ; then PROMPT_COMMAND='echo -ne "\033]0;build3:${PWD}\007\ekdev\e\\"'; fi
 fi
 
-#Get edit for of production store
-function get_pro_farm () { echo st`yinst ssh -h editproxy101.store.mud.yahoo.com "ysdtool get_pro_farm $1"` ; }
-
-source /usr/share/autojump/autojump.bash
-
 #----- automatically inserted -----
 if [ -n "$PS1" ]; then
 PS1='[\u@\h \t \w] \$ '
@@ -166,3 +169,6 @@ fi
 setenv () { export $1="$2"; }
 unsetenv () { unset $*; }
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

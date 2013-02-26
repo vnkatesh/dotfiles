@@ -6,9 +6,9 @@
  set record="~/mail/sent/"  
  set postponed="~/mail/postponed/"  
  #Gmail account info  
- set from = "venkatesh88@gmail.com"  
+ set from = "myemail@gmail.com"  
  set realname = "Venkatesh Nandakumar"  
- set imap_user = "venkatesh88@gmail.com"
+ set imap_user = "myemail@gmail.com"
  set imap_pass = "XXXXXXXX"
  #My Editor  
  set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'  
@@ -22,7 +22,7 @@
  #set message_cachedir =~/.mutt/cache/bodies
  set certificate_file =~/.mutt/certificates 
  #SMTP Setup  
- #set smtp_url = "smtp://venkatesh88@smtp.gmail.com:587/"
+ #set smtp_url = "smtp://myemail@smtp.gmail.com:587/"
  #set smtp_pass = "XXXXXXXX"
  #Special Keybindings  
  bind editor <space> noop  

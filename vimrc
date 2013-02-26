@@ -101,7 +101,7 @@ function! s:CombineSelection(line1, line2, cp)
 endfunction
 
 " omnicppcomplete options
-map <C-x><C-x><C-T> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/commontags /usr/include /usr/local/include /home/y/include /vhome/venkatna/svnprojects/sbs-store-trunk/yahoo/properties/store/<CR><CR>
+map <C-x><C-x><C-T> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/commontags /usr/include /usr/local/include<CR><CR>
 set tags+=~/.vim/commontags
  
 " --- OmniCppComplete ---
@@ -149,3 +149,6 @@ set pastetoggle=<F2>
 cmap w!! w !sudo tee % >/dev/null
 nmap <silent> ,/ :nohlsearch<CR>
 inoremap <C-@> <C-P>
+
+" mac os x crontab edit.
+set backupskip=/tmp/*,/private/tmp/*" 
