@@ -124,9 +124,14 @@ export CVS_RSH=/usr/local/bin/ssh
 export FIGNORE=.svn
 export EDITOR=vim
 export ACK_COLOR_MATCH="bold red"
+<<<<<<< HEAD
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:$HADOOP_HOME/bin
 export JAVA_HOME=$(/usr/libexec/java_home)
+=======
+export PATH=$PATH:/home/venkatna/Downloads/android/android-sdk-linux_x86/platform-tools/
+export PYTHONPATH=$PYTHONPATH:/usr/lib/xen-4.1/lib/python/
+>>>>>>> b8ad2b3cfa8d56d8d83b0b002c8fec2c442f030b
 
 #########
 if [ -L /.yroot -a -f /tmp/.ysbsrootrc ]
