@@ -124,20 +124,11 @@ export CVS_RSH=/usr/local/bin/ssh
 export FIGNORE=.svn
 export EDITOR=vim
 export ACK_COLOR_MATCH="bold red"
-<<<<<<< HEAD
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:$HADOOP_HOME/bin
 export JAVA_HOME=$(/usr/libexec/java_home)
-=======
 export PATH=$PATH:/home/venkatna/Downloads/android/android-sdk-linux_x86/platform-tools/
 export PYTHONPATH=$PYTHONPATH:/usr/lib/xen-4.1/lib/python/
->>>>>>> b8ad2b3cfa8d56d8d83b0b002c8fec2c442f030b
-
-#########
-if [ -L /.yroot -a -f /tmp/.ysbsrootrc ]
-then
-        source /tmp/.ysbsrootrc
-fi
 
 umask 022
 
@@ -159,18 +150,10 @@ echo Cannot find ssh agent - maybe you should reconnect and forward it?
 
 #########
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; echo -ne "\007"'
-if [ "$YROOT_NAME" ]; then
-    if echo $TERM|grep -q screen ; then PROMPT_COMMAND='echo -ne "\033]0;\007\ek${YROOT_NAME}\e\\"'; fi
-else
-    if echo $TERM|grep -q screen ; then PROMPT_COMMAND='echo -ne "\033]0;build3:${PWD}\007\ekdev\e\\"'; fi
-fi
 
 #----- automatically inserted -----
 if [ -n "$PS1" ]; then
 PS1='[\u@\h \t \w] \$ '
-if [ -n "$YROOT_NAME" ]; then
-PS1="[$YROOT_NAME] [\u@\h \t \w] \$ "
-fi
 setenv () { export $1="$2"; }
 unsetenv () { unset $*; }
 fi
