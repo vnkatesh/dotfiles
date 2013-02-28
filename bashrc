@@ -65,7 +65,20 @@ xterm*|rxvt*)
     ;;
 esac
 
-alias ls='ls -G --color=tty'
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='darwin'
+fi
+
+if [[ $platform == 'linux' ]]; then
+    alias ls='ls --color=tty'
+elif [[ $platform == 'darwin' ]]; then
+    alias ls='ls -G'
+fi
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -95,7 +108,9 @@ alias tunnel_cluster131='ssh -f -N -L 1123:142.150.234.131:22 venkatesh@fs.csl.t
 alias tunnel_cluster130='ssh -f -N -L 1124:142.150.234.130:22 venkatesh@fs.csl.toronto.edu'
 alias tunnel_website='ssh -f -N -L 1125:seth.eecg.toronto.edu:22 venkatesh@25.176.113.181'
 alias rsync_website='rsync -avz -e "ssh -p 1125" /Users/venkatesh/Dropbox/website venkatesh@localhost:/amza/a/a2/venkatesh/public_html/'
-alias updatedb='sudo /usr/libexec/locate.updatedb'
+if [ -x /usr/libexec/locate.updatedb ]; then
+    alias updatedb='sudo /usr/libexec/locate.updatedb'
+fi
 alias rsync_build='rsync -avz -e ssh /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ venkatesh@25.176.113.181:/home/venkatesh/hadoop-build'
 alias mixapart='cd /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0'
 alias rsync_xen_build='rsync -avz -e ssh /Users/venkatesh/Documents/xen-workspace/venkatesh/target/venkatesh-0.0.1-SNAPSHOT-jar-with-dependencies.jar venkatesh@25.176.113.181:/home/venkatesh/xen'
@@ -126,7 +141,10 @@ export EDITOR=vim
 export ACK_COLOR_MATCH="bold red"
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:$HADOOP_HOME/bin
-export JAVA_HOME=$(/usr/libexec/java_home)
+
+if [ -x /usr/libexec/java_home ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home)
+fi
 export PATH=$PATH:/home/venkatna/Downloads/android/android-sdk-linux_x86/platform-tools/
 export PYTHONPATH=$PYTHONPATH:/usr/lib/xen-4.1/lib/python/
 
