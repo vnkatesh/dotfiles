@@ -5,7 +5,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim irssi muttrc perltidyrc profile screenrc xmonad"    # list of files/folders to symlink in homedir
+files="bashrc vimrc slate vim irssi muttrc perltidyrc profile screenrc xmonad synergy.conf psqlrc"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -13,6 +13,14 @@ files="bashrc vimrc vim irssi muttrc perltidyrc profile screenrc xmonad"    # li
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
 echo "...done"
+
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='darwin'
+fi
 
 # change to the dotfiles directory
 echo "Changing to the $dir directory"
@@ -27,5 +35,7 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-ln -s ~/Dropbox/purple/ ~/.purple
-ln -s ~/Dropbox/liferea_1.8/ ~/.liferea_1.8
+if [[ $platform == 'linux' ]]; then
+    ln -s ~/Dropbox/purple/ ~/.purple
+    ln -s ~/Dropbox/liferea_1.8/ ~/.liferea_1.8
+fi

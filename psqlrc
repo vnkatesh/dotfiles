@@ -1,0 +1,8 @@
+\timing
+\pset border 2
+\pset PAGER /usr/bin/less
+-- This one shows user@host:database
+-- set PROMPT1 '%n@%m:%/%# '
+\set PROMPT1 '%[%033[0;36;29m%]%n@%m:%/%[%033[0m%]%# '
+-- \set PROMPT1 '%[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
+\pset format wrapped

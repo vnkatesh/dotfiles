@@ -152,3 +152,9 @@ inoremap <C-@> <C-P>
 
 " mac os x crontab edit.
 set backupskip=/tmp/*,/private/tmp/*" 
+
+"http://syskall.com/my-biggest-vim-productivity-boost/
+"map <C-J> :bnext<CR>
+"map <C-K> :bprev<CR>
+map <C-L> :tabn<CR>
+map <C-H> :tabp<CR>

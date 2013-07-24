@@ -96,6 +96,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias vi='vim'
 alias top='htop'
+alias fixrow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 alias nanrombabusy='cat /dev/urandom | hexdump -C | grep "ca fe"'
 alias more='most';
 alias less='most';
@@ -104,19 +105,32 @@ alias ssh='ssh -AX'
 alias fin='cd ~/Dropbox/Finances/Toronto'
 alias tunnel='ssh -f -N -L 1122:142.150.234.71:3690 venkatesh@fs.csl.toronto.edu'
 alias printtunnel='ssh -L 9100:128.100.23.53:9100 venkatesh@25.176.113.181'
+alias tunnel_shiny='ssh -f -N -L 1126:shiny13.syslab.sandbox:22 venkatesh@syslab.cs.toronto.edu'
+alias tunnel_shiny08_web='ssh -f -N -L 8088:shiny08.syslab.sandbox:8088 venkatesh@syslab.cs.toronto.edu'
 alias tunnel_cluster131='ssh -f -N -L 1123:142.150.234.131:22 venkatesh@fs.csl.toronto.edu'
 alias tunnel_cluster130='ssh -f -N -L 1124:142.150.234.130:22 venkatesh@fs.csl.toronto.edu'
+alias tunnel_cluster129='ssh -f -N -L 1120:142.150.234.129:22 venkatesh@fs.csl.toronto.edu'
+alias tunnel_cluster121='ssh -f -N -L 1119:142.150.234.121:22 venkatesh@fs.csl.toronto.edu'
+alias tunnel_cluster128='ssh -f -N -L 1118:142.150.234.128:22 venkatesh@fs.csl.toronto.edu'
 alias tunnel_website='ssh -f -N -L 1125:seth.eecg.toronto.edu:22 venkatesh@25.176.113.181'
 alias rsync_website='rsync -avz -e "ssh -p 1125" /Users/venkatesh/Dropbox/website venkatesh@localhost:/amza/a/a2/venkatesh/public_html/'
 if [ -x /usr/libexec/locate.updatedb ]; then
     alias updatedb='sudo /usr/libexec/locate.updatedb'
 fi
 alias rsync_build='rsync -avz -e ssh /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ venkatesh@25.176.113.181:/home/venkatesh/hadoop-build'
+alias rsync_mixapart_build_cluster121='rsync -avz -e "ssh -p 1119" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
+alias rsync_mixapart_build_cluster128='rsync -avz -e "ssh -p 1118" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
+alias rsync_mixapart_build_cluster129='rsync -avz -e "ssh -p 1120" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
+alias rsync_mixapart_build_cluster130='rsync -avz -e "ssh -p 1124" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
+alias rsync_mixapart_build_cluster131='rsync -avz -e "ssh -p 1123" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
+alias rsync_ofs_build='rsync -avz -e "ssh -p 1126" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
 alias mixapart='cd /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0'
 alias rsync_xen_build='rsync -avz -e ssh /Users/venkatesh/Documents/xen-workspace/venkatesh/target/venkatesh-0.0.1-SNAPSHOT-jar-with-dependencies.jar venkatesh@25.176.113.181:/home/venkatesh/xen'
 alias rsync_xen_build_cluster130='rsync -avz -e "ssh -p 1124" /Users/venkatesh/Documents/xen-workspace/venkatesh/target/venkatesh-0.0.1-SNAPSHOT-jar-with-dependencies.jar root@localhost:/root'
 alias rsync_xen_build_cluster131='rsync -avz -e "ssh -p 1123" /Users/venkatesh/Documents/xen-workspace/venkatesh/target/venkatesh-0.0.1-SNAPSHOT-jar-with-dependencies.jar root@localhost:/root'
 alias datafart='curl --data-binary @- datafart.com'
+alias rsync_yarn_shiny13='rsync -avz /Users/venkatesh/Documents/hadoop-common/hadoop-dist/target/hadoop-3.0.0-SNAPSHOT/ shiny:/root/yarn/hadoop-yarn/'
+alias rsync_yarn_shiny08='rsync -avz /Users/venkatesh/Documents/hadoop-common/hadoop-dist/target/hadoop-3.0.0-SNAPSHOT/ shiny08:/root/yarn/hadoop-yarn/'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -141,11 +155,12 @@ export EDITOR=vim
 export ACK_COLOR_MATCH="bold red"
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:$HADOOP_HOME/bin
+#export LD_LIBRARY_PATH=/opt/local/lib:/usr/local/lib
+#export DYLD_LIBRARY_PATH=/opt/local/lib:/usr/local/lib
 
 if [ -x /usr/libexec/java_home ]; then
     export JAVA_HOME=$(/usr/libexec/java_home)
 fi
-export PATH=$PATH:/home/venkatna/Downloads/android/android-sdk-linux_x86/platform-tools/
 export PYTHONPATH=$PYTHONPATH:/usr/lib/xen-4.1/lib/python/
 
 umask 022
@@ -178,3 +193,16 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+function cd {
+if [ "$1" != "" ]
+then
+    pushd "$1" >/dev/null
+else
+    pushd ~ >/dev/null
+fi
+}
+
+function p {
+popd
+}
