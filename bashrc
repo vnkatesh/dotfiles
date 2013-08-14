@@ -73,6 +73,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='darwin'
 fi
 
+
 if [[ $platform == 'linux' ]]; then
     alias ls='ls --color=tty'
 elif [[ $platform == 'darwin' ]]; then
@@ -90,11 +91,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+
+if [ -x /usr/libexec/locate.updatedb ]; then
+    alias updatedb='sudo /usr/libexec/locate.updatedb'
+fi
+
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
 alias vi='vim'
+alias l='ls -CF'
 alias top='htop'
 alias fixrow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 alias nanrombabusy='cat /dev/urandom | hexdump -C | grep "ca fe"'
@@ -114,9 +119,6 @@ alias tunnel_cluster121='ssh -f -N -L 1119:142.150.234.121:22 venkatesh@fs.csl.t
 alias tunnel_cluster128='ssh -f -N -L 1118:142.150.234.128:22 venkatesh@fs.csl.toronto.edu'
 alias tunnel_website='ssh -f -N -L 1125:seth.eecg.toronto.edu:22 venkatesh@25.176.113.181'
 alias rsync_website='rsync -avz -e "ssh -p 1125" /Users/venkatesh/Dropbox/website venkatesh@localhost:/amza/a/a2/venkatesh/public_html/'
-if [ -x /usr/libexec/locate.updatedb ]; then
-    alias updatedb='sudo /usr/libexec/locate.updatedb'
-fi
 alias rsync_build='rsync -avz -e ssh /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ venkatesh@25.176.113.181:/home/venkatesh/hadoop-build'
 alias rsync_mixapart_build_cluster121='rsync -avz -e "ssh -p 1119" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
 alias rsync_mixapart_build_cluster128='rsync -avz -e "ssh -p 1118" /Users/venkatesh/Documents/workspace/mixapart/hadoop-0.20.203.0/build/hadoop-0.20.203.1-SNAPSHOT/ root@localhost:/root/hadoop-build'
@@ -131,15 +133,7 @@ alias rsync_xen_build_cluster131='rsync -avz -e "ssh -p 1123" /Users/venkatesh/D
 alias datafart='curl --data-binary @- datafart.com'
 alias rsync_yarn_shiny13='rsync -avz /Users/venkatesh/Documents/hadoop-common/hadoop-dist/target/hadoop-3.0.0-SNAPSHOT/ shiny:/root/yarn/hadoop-yarn/'
 alias rsync_yarn_shiny08='rsync -avz /Users/venkatesh/Documents/hadoop-common/hadoop-dist/target/hadoop-3.0.0-SNAPSHOT/ shiny08:/root/yarn/hadoop-yarn/'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+alias mvn_hadoop_build='mvn clean install package -Dtar -Pdist -DskipTests -P-cbuild -Dmaven.javadoc.skip=true && cd hadoop-mapreduce-project/ && mvn clean install package -Dtar -Pdist -DskipTests -P-cbuild assembly:assembly -Dmaven.javadoc.skip=true && cd ..'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -206,3 +200,22 @@ fi
 function p {
 popd
 }
+
+NORMAL=$(tput sgr0)
+GREEN=$(tput setaf 2; tput bold)
+YELLOW=$(tput setaf 3)
+RED=$(tput setaf 1)
+
+function red() {
+    echo -e "$RED$*$NORMAL"
+}
+
+function green() {
+    echo -e "$GREEN$*$NORMAL"
+}
+
+function yellow() {
+    echo -e "$YELLOW$*$NORMAL"
+}
+
+function debug() { [ "$DEBUG" ] && echo ">>> $*"; }
