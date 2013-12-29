@@ -1,7 +1,7 @@
 # Doxyfile 1.5.5
 
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = ystore_orders_dailytimeindex
+PROJECT_NAME           = hadoop-yarn-mr2
 PROJECT_NUMBER         = 1.0.1
 OUTPUT_DIRECTORY       = 
 
@@ -36,8 +36,8 @@ INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 8
 ALIASES                = 
-OPTIMIZE_OUTPUT_FOR_C  = YES
-OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = YES
 OPTIMIZE_FOR_FORTRAN   = NO
 OPTIMIZE_OUTPUT_VHDL   = NO
 BUILTIN_STL_SUPPORT    = YES
@@ -93,7 +93,7 @@ FILE_PATTERNS          =
 RECURSIVE              = YES
 EXCLUDE                = payment/paypal/gsoap_paypal_v2.3/soapStub.h payment/paypal/gsoap_paypal_v3.1/soapStub.h payment/paypal/gsoap_paypal_v3.1/soapStub.h payment/paypal/gsoap_paypal_v60.0/soapStub.h
 EXCLUDE_SYMLINKS       = YES
-EXCLUDE_PATTERNS       = */FreeBSD.*/* */.svn/* */cppunit/*
+EXCLUDE_PATTERNS       = */FreeBSD.*/* */.svn/* */cppunit/* */.git/* */test/*
 EXCLUDE_SYMBOLS        = 
 EXAMPLE_PATH           = 
 EXAMPLE_PATTERNS       = 
@@ -198,7 +198,7 @@ GENERATE_TAGFILE       =
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 
-PERL_PATH              = /usr/local/bin/perl
+PERL_PATH              = /opt/local/bin/perl
 
 CLASS_DIAGRAMS         = YES
 
