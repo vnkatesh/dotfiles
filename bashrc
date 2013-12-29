@@ -91,6 +91,19 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+if [ -x /opt/local/bin/gdircolors ]; then
+    test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
+    alias ls='gls -F --color=auto'
+    alias la='ls -a'
+    alias lf='ls -FA'
+    alias ll='ls -lA'
+    alias dir='gdir --color=auto'
+    alias vdir='gvdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 
 if [ -x /usr/libexec/locate.updatedb ]; then
     alias updatedb='sudo /usr/libexec/locate.updatedb'
@@ -111,7 +124,7 @@ alias fin='cd ~/Dropbox/Finances/Toronto'
 alias tunnel='ssh -f -N -L 1122:142.150.234.71:3690 venkatesh@fs.csl.toronto.edu'
 alias printtunnel='ssh -L 9100:128.100.23.53:9100 venkatesh@25.176.113.181'
 alias tunnel_shiny='ssh -f -N -L 1126:shiny13.syslab.sandbox:22 venkatesh@syslab.cs.toronto.edu'
-alias tunnel_shiny08_web='ssh -f -N -L 8088:shiny08.syslab.sandbox:8088 venkatesh@syslab.cs.toronto.edu'
+alias tunnel_shiny_web='ssh -f -N -L 8088:shiny08.syslab.sandbox:8088 venkatesh@syslab.cs.toronto.edu && ssh -f -N -L 19888:shiny08.syslab.sandbox:19888 venkatesh@syslab.cs.toronto.edu && ssh -f -N -L 50070:shiny08.syslab.sandbox:50070 venkatesh@syslab.cs.toronto.edu'
 alias tunnel_cluster131='ssh -f -N -L 1123:142.150.234.131:22 venkatesh@fs.csl.toronto.edu'
 alias tunnel_cluster130='ssh -f -N -L 1124:142.150.234.130:22 venkatesh@fs.csl.toronto.edu'
 alias tunnel_cluster129='ssh -f -N -L 1120:142.150.234.129:22 venkatesh@fs.csl.toronto.edu'
@@ -133,7 +146,10 @@ alias rsync_xen_build_cluster131='rsync -avz -e "ssh -p 1123" /Users/venkatesh/D
 alias datafart='curl --data-binary @- datafart.com'
 alias rsync_yarn_shiny13='rsync -avz /Users/venkatesh/Documents/hadoop-common/hadoop-dist/target/hadoop-3.0.0-SNAPSHOT/ shiny:/root/yarn/hadoop-yarn/'
 alias rsync_yarn_shiny08='rsync -avz /Users/venkatesh/Documents/hadoop-common/hadoop-dist/target/hadoop-3.0.0-SNAPSHOT/ shiny08:/root/yarn/hadoop-yarn/'
+alias rsync_hadoop_shiny08='rsync -avz /Users/venkatesh/Documents/workspace/hadoop-1.2/build/hadoop-1.2.2-SNAPSHOT/ shiny08:/root/hadoop-build/'
+alias rsync_hadoop_shiny13='rsync -avz /Users/venkatesh/Documents/workspace/hadoop-1.2/build/hadoop-1.2.2-SNAPSHOT/ shiny:/root/hadoop-build/'
 alias mvn_hadoop_build='mvn clean install package -Dtar -Pdist -DskipTests -P-cbuild -Dmaven.javadoc.skip=true && cd hadoop-mapreduce-project/ && mvn clean install package -Dtar -Pdist -DskipTests -P-cbuild assembly:assembly -Dmaven.javadoc.skip=true && cd ..'
+alias eclipse_hadoop_listen='export HADOOP_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5000"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -147,7 +163,7 @@ export CVS_RSH=/usr/local/bin/ssh
 export FIGNORE=.svn
 export EDITOR=vim
 export ACK_COLOR_MATCH="bold red"
-export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_HOME=/Users/venkatesh/Documents/workspace/hadoop-1.2/build/hadoop-1.2.2-SNAPSHOT
 export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:$HADOOP_HOME/bin
 #export LD_LIBRARY_PATH=/opt/local/lib:/usr/local/lib
 #export DYLD_LIBRARY_PATH=/opt/local/lib:/usr/local/lib
@@ -158,6 +174,8 @@ fi
 export PYTHONPATH=$PYTHONPATH:/usr/lib/xen-4.1/lib/python/
 
 umask 022
+
+stty erase ^?
 
 man () {
     /usr/bin/man $@ || (help $@ 2> /dev/null && help $@ | less)
