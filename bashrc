@@ -163,7 +163,7 @@ export CVS_RSH=/usr/local/bin/ssh
 export FIGNORE=.svn
 export EDITOR=vim
 export ACK_COLOR_MATCH="bold red"
-export HADOOP_HOME=/Users/venkatesh/Documents/workspace/hadoop-1.2/build/hadoop-1.2.2-SNAPSHOT
+export HADOOP_HOME=/home/venkatesh/hadoop-build/
 export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:$HADOOP_HOME/bin
 #export LD_LIBRARY_PATH=/opt/local/lib:/usr/local/lib
 #export DYLD_LIBRARY_PATH=/opt/local/lib:/usr/local/lib
@@ -171,6 +171,7 @@ export PATH=/sbin:/usr/sbin:/bin:/opt/local/bin:/usr/bin:/usr/local/bin:/usr/X11
 if [ -x /usr/libexec/java_home ]; then
     export JAVA_HOME=$(/usr/libexec/java_home)
 fi
+export JAVA_HOME=/home/venkatesh/jre1.7.0_51/
 export PYTHONPATH=$PYTHONPATH:/usr/lib/xen-4.1/lib/python/
 
 umask 022
