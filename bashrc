@@ -162,6 +162,9 @@ alias mvn_hadoop_build='mvn clean install package -Dtar -Pdist -DskipTests -P-cb
 alias eclipse_hadoop_listen='export HADOOP_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5000"'
 alias eclipse_hadoop_listen_blank='export HADOOP_OPTS=""'
 
+alias cscope_build="rm tags; rm cscope.*; find . -type f ! -iwholename '*\.\/build\/*' ! -iwholename '*.jar' ! -iwholename '*git*' -iwholename '*lib\/jdiff\/*' -exec sh -c \"file {} | grep text 2>&1 1> /dev/null\" \; -print > cscope.files; ctags -R"
+alias cscope="cscope -CqUki cscope.files"
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -241,6 +244,11 @@ function red() {
 
 function green() {
     echo -e "$GREEN$*$NORMAL"
+}
+
+function did() {
+    /usr/bin/doing now $*
+    /usr/bin/doing done
 }
 
 function yellow() {
