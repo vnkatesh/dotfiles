@@ -18,6 +18,8 @@ filetype off
 filetype plugin indent on
 set modelines=0
 set tabstop=4
+"http://unix.stackexchange.com/questions/71109/how-can-i-exit-from-read-only-mode-in-vim
+set noro
 set shiftwidth=4
 set shiftround
 set softtabstop=4
@@ -158,3 +160,8 @@ set backupskip=/tmp/*,/private/tmp/*"
 "map <C-K> :bprev<CR>
 map <C-L> :tabn<CR>
 map <C-H> :tabp<CR>
+
+"http://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
+if &diff
+        colorscheme solarized
+endif
